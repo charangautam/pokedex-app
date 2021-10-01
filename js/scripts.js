@@ -1,4 +1,9 @@
-alert('Hello World');
+// list of pokemons 
 
-let favFood = "donair pizza";
-document.write(favFood);
+pokemonlist = [
+    {name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison']}, 
+    {name: 'Charmander', height: 0.6, types: ['fire']},
+    {name: 'Squirtle', height: 0.5, types: ['water']}
+]
+
+
