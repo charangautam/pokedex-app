@@ -18,11 +18,20 @@ let pokemonRepository = (function() {
         }
     }
 
+    function find(pokemonName) {
+        let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
+        console.log(result[0])
+    }
+
     return {
         getAll,
-        add
+        add,
+        find
     };
 }) ();
+
+pokemonRepository.find('Bulbasaur')
+
 
 pokemonRepository.getAll().forEach(function (pokemon) {
     let name = pokemon.name
