@@ -31,11 +31,11 @@ let pokemonRepository = (function() {
 
     function find(pokemonName) {
         let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
-        console.log(result[0])
+        console.log(result[0]);
     }
 
     function showDetails(pokemon) {
-        console.log(pokemon)
+        console.log(pokemon);
     }
 
     function addListItem(pokemon) {
@@ -47,7 +47,9 @@ let pokemonRepository = (function() {
         listItem.appendChild(button)
         list.appendChild(listItem)
 
-        button.addEventListener('click', showDetails(pokemon))
+        button.addEventListener('click', function (event) {
+            showDetails(pokemon);
+        });
     }
 
     return {
