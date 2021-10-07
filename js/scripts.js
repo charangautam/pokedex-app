@@ -23,25 +23,38 @@ let pokemonRepository = (function() {
         console.log(result[0])
     }
 
+    function showDetails(pokemon) {
+        console.log(pokemon)
+    }
+
+    function addListItem(pokemon) {
+        let list = document.querySelector('.pokemon-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerText = pokemon.name;
+        button.classList.add('pokemon-button')
+        listItem.appendChild(button)
+        list.appendChild(listItem)
+
+        button.addEventListener('click', showDetails)
+    }
+
     return {
         getAll,
         add,
-        find
+        find,
+        addListItem
     };
 }) ();
 
 pokemonRepository.find('Bulbasaur')
 
-
 pokemonRepository.getAll().forEach(function (pokemon) {
-    let name = pokemon.name
-    let height = pokemon.height
-    if(height > 0.6) {
-        document.write(`<p>${name} (${height} m) - Wow that's big </p>`)
-    } else {
-        document.write(`<p> ${name} (${height} m) </p>`)
-    }
+    pokemonRepository.addListItem(pokemon)
+
 });
+
+
 
 
 
