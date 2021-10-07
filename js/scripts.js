@@ -11,10 +11,21 @@ let pokemonRepository = (function() {
     }
 
     function add(pokemon) {
-        if(typeof pokemon === 'object') {
+        if(typeof pokemon === 'object' && keyMatch(pokemon)) {
             return pokemonList.push(pokemon);
         } else {
             console.log('You can only add an object')
+        }
+    }
+
+    function keyMatch(pokemon) {
+        if(Object.keys(pokemon).includes('name') ||
+            Object.keys(pokemon).includes('height') ||
+            Object.keys(pokemon).includes('name')
+        ) {
+            return true
+        } else {
+            return false
         }
     }
 
@@ -36,7 +47,7 @@ let pokemonRepository = (function() {
         listItem.appendChild(button)
         list.appendChild(listItem)
 
-        button.addEventListener('click', showDetails)
+        button.addEventListener('click', showDetails(pokemon))
     }
 
     return {
@@ -48,6 +59,7 @@ let pokemonRepository = (function() {
 }) ();
 
 pokemonRepository.find('Bulbasaur')
+
 
 pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon)
