@@ -35,7 +35,8 @@ let pokemonRepository = (function() {
     // function that checks if the new pokemon object includes the same keys
     function keyMatch(pokemon) {
         if(Object.keys(pokemon).includes('name') ||
-            Object.keys(pokemon).includes('height')
+            Object.keys(pokemon).includes('height') ||
+            Object.keys(pokemon).includes('name')
         ) {
             return true
         } else {
@@ -52,7 +53,7 @@ let pokemonRepository = (function() {
     // function that displays the details of a specific pokemon
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function() {
-            showModal(pokemon.name, pokemon.height, pokemon.imgURL);
+            console.log(pokemon)
         })
 
     }
@@ -63,7 +64,8 @@ let pokemonRepository = (function() {
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add('pokemon-button')
+        button.classList.add('pokemon-button', 'btn', 'btn-primary')
+        listItem.classList.add('group-list-item')
         listItem.appendChild(button)
         list.appendChild(listItem)
 
@@ -108,58 +110,6 @@ let pokemonRepository = (function() {
             removeLoadingMessage()
         });
     }
-
-    // all functions related to the modal details are below this
-
-    let modalContainer = document.querySelector('#modal-container');
-
-    function showModal(name, height, img) {
-        // Clear all existing modal content
-        modalContainer.innerHTML = '';
-        
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
-        
-        // Add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'X';
-        closeButtonElement.addEventListener('click', hideModal);
-        
-        let nameElement = document.createElement('h1');
-        nameElement.innerText = name;
-        
-        let heightElement = document.createElement('p');
-        heightElement.innerText = `Height: ${height}`;
-
-        let imgElement = document.createElement('img');
-        imgElement.src = img;
-        
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(nameElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(imgElement);
-        modalContainer.appendChild(modal);
-        
-        modalContainer.classList.add('is-visible');
-    }
-
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-    }
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-          hideModal();  
-        }
-      });
-      
-    modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
 
     // returns all ^ functions to use outside the IIFE function
     return {
