@@ -5,19 +5,25 @@ body {
 }
 
 .navbar-brand {
-    font-size: 40px;
+    font-size: 50px;
+    font-family: 'Saira Stencil One', cursive;
 }
+
+.search-form {
+    margin: 0 auto;
+} 
 
 .pokemon-list {
     list-style: none;
-    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .pokemon-button {
     border-radius: 10px;
     border-bottom: 4px solid #000;
     background-color: rgb(221, 70, 70);
-    width: 60%;
+    width: 70%;
     padding: 20px;
     margin-top: 30px;
     font-size: 22px;
@@ -25,6 +31,43 @@ body {
     text-transform: capitalize;
 }
 
-h5 {
+.modal-content {
+    margin-top: 100px;
+}
+
+.modal-header {
+    background-color: #FFE459;
+}
+
+.modal-title {
     text-transform: capitalize;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.pokemon-height {
+    font-size: 22px;
+}
+
+.pokemon-img {
+    height: 200px;
+    width: 200px;
+}
+
+@media all and (max-width: 770px) {
+    .pokemon-list {
+        grid-template-columns: 1fr 1fr;
+    }
+    .modal-title {
+        font-size: 26px;
+    }
+    
+    .pokemon-height {
+        font-size: 17px;
+    }
+    
+    .pokemon-img {
+        height: 130px;
+        width: 130px;
+    }
 }

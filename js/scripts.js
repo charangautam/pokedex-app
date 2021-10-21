@@ -57,10 +57,9 @@ let pokemonRepository = (function() {
             modalTitle.text(pokemon.name);
 
             let height = $('.pokemon-height');
-            let img = document.querySelector('<img></img>');
-            height.text(pokemon.height)
-            img.src = pokemon.imgURL
-
+            let img = $('.pokemon-img');
+            height.text(`Height: ${pokemon.height}`);
+            img.attr('src', pokemon.imgURL);
         })
 
     }
@@ -118,6 +117,10 @@ let pokemonRepository = (function() {
             console.log(err)
             removeLoadingMessage()
         });
+    }
+
+    function search(pokemonName) {
+        
     }
 
     // returns all ^ functions to use outside the IIFE function
