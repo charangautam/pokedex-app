@@ -53,7 +53,14 @@ let pokemonRepository = (function() {
     // function that displays the details of a specific pokemon
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function() {
-            console.log(pokemon)
+            let modalTitle = $('.modal-title');
+            modalTitle.text(pokemon.name);
+
+            let height = $('.pokemon-height');
+            let img = document.querySelector('<img></img>');
+            height.text(pokemon.height)
+            img.src = pokemon.imgURL
+
         })
 
     }
@@ -66,6 +73,8 @@ let pokemonRepository = (function() {
         button.innerText = pokemon.name;
         button.classList.add('pokemon-button', 'btn', 'btn-primary')
         listItem.classList.add('group-list-item')
+        button.setAttribute('data-toggle','modal')
+        button.setAttribute('data-target','#targetModal')
         listItem.appendChild(button)
         list.appendChild(listItem)
 
