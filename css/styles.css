@@ -1,14 +1,11 @@
 body {
     background-color: #FFFEB7;
     font-family: 'Open Sans', sans-serif;
-    padding: 20px;
     text-align: center;
 }
 
-h1 {
+.navbar-brand {
     font-size: 40px;
-    font-weight: 700;
-    font-style: italic;
 }
 
 .pokemon-list {

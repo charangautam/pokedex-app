@@ -63,7 +63,8 @@ let pokemonRepository = (function() {
         let listItem = document.createElement('li');
         let button = document.createElement('button');
         button.innerText = pokemon.name;
-        button.classList.add('pokemon-button')
+        button.classList.add('pokemon-button', 'btn', 'btn-primary')
+        listItem.classList.add('group-list-item')
         listItem.appendChild(button)
         list.appendChild(listItem)
 
@@ -111,55 +112,55 @@ let pokemonRepository = (function() {
 
     // all functions related to the modal details are below this
 
-    let modalContainer = document.querySelector('#modal-container');
+    // let modalContainer = document.querySelector('#modal-container');
 
-    function showModal(name, height, img) {
-        // Clear all existing modal content
-        modalContainer.innerHTML = '';
+    // function showModal(name, height, img) {
+    //     // Clear all existing modal content
+    //     modalContainer.innerHTML = '';
         
-        let modal = document.createElement('div');
-        modal.classList.add('modal');
+    //     let modal = document.createElement('div');
+    //     modal.classList.add('modal');
         
-        // Add the new modal content
-        let closeButtonElement = document.createElement('button');
-        closeButtonElement.classList.add('modal-close');
-        closeButtonElement.innerText = 'X';
-        closeButtonElement.addEventListener('click', hideModal);
+    //     // Add the new modal content
+    //     let closeButtonElement = document.createElement('button');
+    //     closeButtonElement.classList.add('modal-close');
+    //     closeButtonElement.innerText = 'X';
+    //     closeButtonElement.addEventListener('click', hideModal);
         
-        let nameElement = document.createElement('h1');
-        nameElement.innerText = name;
+    //     let nameElement = document.createElement('h1');
+    //     nameElement.innerText = name;
         
-        let heightElement = document.createElement('p');
-        heightElement.innerText = `Height: ${height}`;
+    //     let heightElement = document.createElement('p');
+    //     heightElement.innerText = `Height: ${height}`;
 
-        let imgElement = document.createElement('img');
-        imgElement.src = img;
+    //     let imgElement = document.createElement('img');
+    //     imgElement.src = img;
         
-        modal.appendChild(closeButtonElement);
-        modal.appendChild(nameElement);
-        modal.appendChild(heightElement);
-        modal.appendChild(imgElement);
-        modalContainer.appendChild(modal);
+    //     modal.appendChild(closeButtonElement);
+    //     modal.appendChild(nameElement);
+    //     modal.appendChild(heightElement);
+    //     modal.appendChild(imgElement);
+    //     modalContainer.appendChild(modal);
         
-        modalContainer.classList.add('is-visible');
-    }
+    //     modalContainer.classList.add('is-visible');
+    // }
 
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-    }
+    // function hideModal() {
+    //     modalContainer.classList.remove('is-visible');
+    // }
 
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-          hideModal();  
-        }
-      });
+    // window.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+    //       hideModal();  
+    //     }
+    //   });
       
-    modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
+    // modalContainer.addEventListener('click', (e) => {
+    //     let target = e.target;
+    //     if (target === modalContainer) {
+    //         hideModal();
+    //     }
+    // });
 
     // returns all ^ functions to use outside the IIFE function
     return {
