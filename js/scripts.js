@@ -85,6 +85,15 @@ let pokemonRepository = (function() {
             let img = $('.pokemon-img');
             height.text(`Height: ${pokemon.height}`);
             img.attr('src', pokemon.imgURL);
+
+            let typesArr = []
+            let pokemonTypes = $('.pokemon-types')
+            pokemon.types.forEach(item => {
+                let types = item.type.name
+                typesArr.push(types)
+            })
+            let string = typesArr.join(' & ')
+            pokemonTypes.text(`Type(s): ${string}`)
         })
 
     }
