@@ -14,13 +14,8 @@ let pokemonRepository = (function() {
     // function that removes loading message after fetching data
     function removeLoadingMessage() {
         let body = document.querySelector('body');
-        let message = document.querySelector('h2')
-        body.removeChild(message)
-    }
-
-    // function that returns all pokemon objects from pokemonList
-    function getAll() {
-        return pokemonList;
+        let message = document.querySelector('h2');
+        body.removeChild(message);
     }
 
     // function that adds pokemon objects to the pokemonList
@@ -28,15 +23,14 @@ let pokemonRepository = (function() {
         if(typeof pokemon === 'object' && keyMatch(pokemon)) {
             return pokemonList.push(pokemon);
         } else {
-            console.log('You can only add an object')
+            console.log('You can only add an object');
         }
     }
 
     // function that checks if the new pokemon object includes the same keys
     function keyMatch(pokemon) {
-        if(Object.keys(pokemon).includes('name') ||
-            Object.keys(pokemon).includes('height') ||
-            Object.keys(pokemon).includes('name')
+        if(Object.keys(pokemon).includes('name') &&
+            Object.keys(pokemon).includes('detailsURL')
         ) {
             return true
         } else {
@@ -44,10 +38,41 @@ let pokemonRepository = (function() {
         }
     }
 
-    // function that searches for a pokemon based on its name
-    function find(pokemonName) {
-        let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
-        console.log(result[0]);
+    // function that loads the API and extracts needed details
+    function loadList() {
+        showLoadingMessage()
+        return fetch(apiURL).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach((item) => {
+                let pokemon = {
+                    name: item.name,
+                    detailsURL: item.url
+                };
+                add(pokemon);
+            });
+            removeLoadingMessage()
+        }).catch(function (err) {
+            console.log(err)
+            removeLoadingMessage()
+        });
+    }
+
+    // function that loads wanted details in the pokemon object
+    function loadDetails(pokemon) {
+        showLoadingMessage()
+        let url = pokemon.detailsURL;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            pokemon.imgURL = details.sprites.front_default;
+            pokemon.height = details.height;
+            pokemon.types = details.types;
+            removeLoadingMessage()
+        }).catch(function (err) {
+            console.log(err)
+            removeLoadingMessage()
+        });
     }
 
     // function that displays the details of a specific pokemon
@@ -83,54 +108,23 @@ let pokemonRepository = (function() {
         });
     }
 
-    // function that loads the API and extracts needed details
-    function loadList() {
-        showLoadingMessage()
-        return fetch(apiURL).then(function (response) {
-            return response.json();
-        }).then(function (json) {
-            json.results.forEach((item) => {
-                let pokemon = {
-                    name: item.name,
-                    detailsURL: item.url
-                };
-                add(pokemon);
-            });
-            removeLoadingMessage()
-        }).catch(function (err) {
-            console.log(err)
-            removeLoadingMessage()
-        });
+    // function that returns all pokemon objects from pokemonList
+    function getAll() {
+        return pokemonList;
     }
 
-    function loadDetails(pokemon) {
-        showLoadingMessage()
-        let url = pokemon.detailsURL;
-        return fetch(url).then(function (response) {
-            return response.json();
-        }).then(function (details) {
-            pokemon.imgURL = details.sprites.front_default;
-            pokemon.height = details.height;
-            pokemon.types = details.types;
-            removeLoadingMessage()
-        }).catch(function (err) {
-            console.log(err)
-            removeLoadingMessage()
-        });
-    }
-
-    function search(pokemonName) {
-        
+    // function that searches for a pokemon based on its name
+    function find(pokemonName) {
+        let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
+        console.log(result[0]);
     }
 
     // returns all ^ functions to use outside the IIFE function
     return {
         getAll,
-        add,
         find,
         addListItem,
         loadList,
-        loadDetails
     };
 }) ();
 

@@ -45,7 +45,7 @@ body {
     font-weight: 600;
 }
 
-.pokemon-height {
+.pokemon-height, .pokemon-types {
     font-size: 22px;
 }
 
@@ -62,7 +62,7 @@ body {
         font-size: 26px;
     }
     
-    .pokemon-height {
+    .pokemon-height, .pokemon-types {
         font-size: 17px;
     }
     
