@@ -137,17 +137,20 @@ let pokemonRepository = (function() {
     };
 }) ();
 
-pokemonRepository.find('Bulbasaur')
-
 pokemonRepository.loadList().then(function() {
     pokemonRepository.getAll().forEach(function (pokemon) {
         pokemonRepository.addListItem(pokemon)
     });
 });
 
-
-
-
+$(document).ready(function(){
+    $('#search-input').on('keyup', function() {
+      var value = $(this).val().toLowerCase();
+      $('.pokemon-list .group-list-item').filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+});
 
 
 

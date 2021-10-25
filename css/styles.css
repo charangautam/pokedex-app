@@ -4,14 +4,27 @@ body {
     text-align: center;
 }
 
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+}
+
+#search-input {
+    text-align: center;
+    border-radius: 20px;
+    outline: none;
+    font-size: 20px;
+    padding: 4px;
+}
+
 .navbar-brand {
     font-size: 50px;
     font-family: 'Saira Stencil One', cursive;
+    color: #ffcb05 !important;
 }
-
-.search-form {
-    margin: 0 auto;
-} 
 
 .pokemon-list {
     list-style: none;
