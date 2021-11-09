@@ -116,16 +116,9 @@ let pokemonRepository = (function() {
         return pokemonList;
     }
 
-    // function that searches for a pokemon based on its name
-    function find(pokemonName) {
-        let result = pokemonList.filter(pokemon => pokemon.name === pokemonName);
-        console.log(result[0]);
-    }
-
     // returns all ^ functions to use outside the IIFE function
     return {
         getAll,
-        find,
         addListItem,
         loadList,
     };
@@ -146,7 +139,3 @@ $(document).ready(function(){
       });
     });
 });
-
-
-
-
