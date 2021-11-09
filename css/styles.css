@@ -27,6 +27,7 @@ body {
 }
 
 .pokemon-list {
+    padding-top: 110px;
     list-style: none;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

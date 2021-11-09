@@ -29,13 +29,7 @@ let pokemonRepository = (function() {
 
     // function that checks if the new pokemon object includes the same keys
     function keyMatch(pokemon) {
-        if(Object.keys(pokemon).includes('name') &&
-            Object.keys(pokemon).includes('detailsURL')
-        ) {
-            return true
-        } else {
-            return false
-        }
+       return pokemon.name && pokemon.detailsURL;
     }
 
     // function that loads the API and extracts needed details
