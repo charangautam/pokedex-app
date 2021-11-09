@@ -72,22 +72,22 @@ let pokemonRepository = (function() {
     // function that displays the details of a specific pokemon
     function showDetails(pokemon) {
         loadDetails(pokemon).then(function() {
-            let modalTitle = $('.modal-title');
-            modalTitle.text(pokemon.name);
+            let modalTitle = document.querySelector('.modal-title');
+            modalTitle.innerText = pokemon.name;
 
-            let height = $('.pokemon-height');
-            let img = $('.pokemon-img');
-            height.text(`Height: ${pokemon.height}`);
-            img.attr('src', pokemon.imgURL);
+            let height = document.querySelector('.pokemon-height');
+            let img = document.querySelector('.pokemon-img');
+            height.innerText = `Height: ${pokemon.height}`;
+            img.setAttribute('src', pokemon.imgURL);
 
             let typesArr = []
-            let pokemonTypes = $('.pokemon-types')
+            let pokemonTypes = document.querySelector('.pokemon-types')
             pokemon.types.forEach(item => {
                 let types = item.type.name
                 typesArr.push(types)
             })
             let string = typesArr.join(' & ')
-            pokemonTypes.text(`Type(s): ${string}`)
+            pokemonTypes.innerText = `Type(s): ${string}`;
         })
 
     }
@@ -137,6 +137,7 @@ pokemonRepository.loadList().then(function() {
     });
 });
 
+// Search function
 $(document).ready(function(){
     $('#search-input').on('keyup', function() {
       var value = $(this).val().toLowerCase();
